@@ -124,24 +124,6 @@ WHERE is_repeated_guest = 1
 GROUP BY country
 ORDER BY repeated_guests DESC;
 
--- 13
--- Creating View to analyze cancellations by hotel type and lead time
--- for later visualizations
-CREATE VIEW CancellationsByHotelType AS
-SELECT 
-    hotel, 
-    AVG(lead_time) AS avg_lead_time, 
-    COUNT(*) AS total_bookings, 
-    SUM(is_canceled) AS total_cancellations, 
-    (SUM(is_canceled) / COUNT(*)) * 100 AS cancellation_rate
-FROM hotel_bookings
-GROUP BY hotel
-ORDER BY cancellation_rate DESC;
-
-SELECT * FROM CancellationsByHotelType;
-
-
-
 
 
 
